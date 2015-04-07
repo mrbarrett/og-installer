@@ -8,29 +8,29 @@ read -p "This script will install Open Graphiti including all required packages.
 		n|N ) echo "goodbye"; exit 0;;
 		* ) echo "goodbye"; exit 0;;
 	esac
-#install xcode command line tools
-#xcode-select --install
+install xcode command line tools
+xcode-select --install
 
 #grab brew repo
-#ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-#install git and wget
+#install git
 
-#brew install git
+brew install git
 
 #install graphiti
-#mkdir ~/Documents/OpenGraphiti
-#(cd /home && 
-#git clone https://github.com/opendns/dataviz.git --recursive ~/Documents/OpenGraphiti)
+mkdir ~/Documents/OpenGraphiti
+(cd /home && 
+git clone https://github.com/opendns/dataviz.git --recursive ~/Documents/OpenGraphiti)
 
 #install python and libs
-#brew install python
-#pip install networkx
-#pip inststall pygeoip
+brew install python
+pip install networkx
+pip inststall pygeoip
 
 #compile engine
-#(cd /home && 
-#	make -C ~/Documents/OpenGraphiti/graphiti)
+(cd /home && 
+	make -C ~/Documents/OpenGraphiti/graphiti)
 
 
 
