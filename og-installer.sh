@@ -39,45 +39,34 @@ read -p "This script will install Open Graphiti including all required packages.
 while true; do
 	read -p "Do you wish to download datasets? (y/n) " choice
 	case "$choice" in 
-		y|Y ) echo "yes"; break;;
-		n|N ) echo "thanks for installing Open Graphti!"; exit 0;;
+		y|Y ) echo "yes"; dataset_install=1; break;;
+		n|N ) echo "no"; break;;
 		* ) echo "please enter y/n";;
 	esac
 done
 
-#while true; do
-#	read -p "Do you wish to create a custom directory for the datasets? (Default is /OpenGraphiti/Datasets) (y/n)" datasets
-#	case "$datasets" in 
-#		y|Y ) datasets=1; break;;
-#		n|N ) echo "Using Default..."; break;;
-#		* ) echo "please enter y/n";;
-#	esac
-#done	
+if [ dataset_install = "1" ]; then
 
-#if [ $datasets = "1" ]; then
-#	while true; do
-#		read "enter new directory:" dataset_dir
-#		"$dataset_dir" in
-#			* ) echo dataset_dir "ok"; break;  
-#	done
-#	wget "" 
+	dataset_dir=~/Documents/OpenGraphiti/Datasets
+	mkdir ~/Documents/OpenGraphiti/Datasets
+	(cd /home && 
+		git clone https://github.com/mrbarrett/baked-graphs.git $dataset_dir)
 
-#else 
-dataset_dir=~/Documents/OpenGraphiti/Datasets
-mkdir ~/Documents/OpenGraphiti/Datasets
-(cd /home && 
-	git clone https://github.com/mrbarrett/baked-graphs.git $dataset_dir)
+else 
+	break
+fi 
 
 while true; do
 	read -p "Do you wish to install the sgraph-api and miner script? WARNING: OpenDNS EMPLOYEES ONLY! (yes/no) " choice
 	case "$choice" in
-		y|Y ) echo "please enter your email: " email; email_set=1; break;;
+		y|Y ) email_set=1; break;;
 		n|N ) echo "thanks for installing Open Graphiti!"; exit 0;;
 		* ) echo "please enter y/n";;
 	esac
 done
 
 if [ $email_set = "1" ]; then
+	read "please enter your email:" email
 	case "$email" in
 		*@opendns.com ) break;;
 		*@* ) echo "invalid email. thanks for installing Open Graphiti!"; exit 0;;
@@ -85,8 +74,11 @@ if [ $email_set = "1" ]; then
 else 
 	echo "thanks for installing Open Graphiti!"
 	exit 0
-done
-		
+fi
+
+
+
+
 
 
 
